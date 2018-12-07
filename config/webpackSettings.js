@@ -5,7 +5,7 @@ const paths = require('./paths')
 
 
 const esLintRule = {
-  test: /\.jsx?$/,
+  test: /\.(js|mjs|jsx|ts|tsx)$/,
   enforce: 'pre',
   use: [
     {

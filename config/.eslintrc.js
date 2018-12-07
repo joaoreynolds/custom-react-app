@@ -14,6 +14,7 @@ module.exports = {
   },
   "globals": {
     "test": true,
+    "it": true,
     "flushPromises": true,
     "expect": true
   },
