@@ -2,7 +2,7 @@
 
 ## Motivation
 
-I know, ONE MORE bootstrap project. I built this for my own use. As a freelancer I find myself creating a new project every couple of months. I would typically create via `create-react-app` and then promptly eject, allowing me to fully customize the build based on my situation.
+I know, ONE MORE react seed project. I built this for my own use, so take it for what it is. As a freelancer I find myself creating a new project every couple of months. I would typically create via `create-react-app` and then promptly eject, allowing me to fully customize the build based on my situation.
 
 Well, I got sick of all the extra boilerplate and code that came with an ejected `create-react-app`. If I don't want to use `less` or `scss`, I don't want all the config for it. And even though `create-react-app` allows you to specify which you want to use, the config code was all there.
 
