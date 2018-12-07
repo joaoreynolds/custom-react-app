@@ -30,10 +30,6 @@ Variables used for the different build environments are found at `config/.env` (
 
 Env variables used in the app must begin with `REACT_APP_`.
 
-### API ###
-
-The API Guide can be found at http://rewrite.ridesystems.net/api/help
-
 ### Testing ###
 
 Tests are run automatically on the git pre-commit hook - so when you run `git commit`, tests (and linting) will run first. When developing tests, you can run `npm test` and your files will be watched.
@@ -42,4 +38,4 @@ Our convention is: create test files in the same directory as the source file wi
 
 ### Pre-Commit Hook
 
-This app has a precommit hook which was installed automatically with the npm module `pre-commit`. You can configure what scripts are executed in the `pre-commit` property in `package.json`. Out of the box this will lint and run tests.
+This app has a pre-commit hook which was installed automatically with the npm module `pre-commit`. You can configure what scripts are executed in the `pre-commit` property in `package.json`. Out of the box this will lint and run tests.
