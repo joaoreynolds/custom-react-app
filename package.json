@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A custom react app, with a simplified but powerful build system inspired by create-react-app",
   "private": true,
+  "engines": {
+    "node": "10.13.0"
+  },
   "scripts": {
     "test": "node dev-scripts/test.js --env=jsdom --colors --detectOpenHandles",
     "test:ci": "cross-env CI=true npm run test",
@@ -12,6 +15,11 @@
   },
   "author": "John Reynolds",
   "license": "MIT",
+  "homepage": "https://github.com/joaoreynolds/custom-react-app",
+  "repository": {
+    "type": "https",
+    "url": "https://github.com/joaoreynolds/custom-react-app.git"
+  },
   "pre-commit": [
     "lint",
     "test:ci"
