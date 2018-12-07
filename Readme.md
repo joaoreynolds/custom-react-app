@@ -26,7 +26,7 @@ Download npm dependencies if you haven't already: `npm install`
 
 ### Setting up environment build variables ###
 
-Variables used for the different build environments are found at `config/.env` (for development). To set them up make a copy of the `.env-sample` file and rename it `.env`
+Variables used for the different build environments are found at `config/.env-local` (for development). To set them up make a copy of the `.env-sample` file and rename it `.env-local`. If you want to build locally, you should create a `.env` file. If building on a CI server, just set environment variable at the server level.
 
 Env variables used in the app must begin with `REACT_APP_`.
 

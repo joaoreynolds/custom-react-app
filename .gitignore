@@ -9,6 +9,7 @@ node_modules
 /build
 /config/.env
 .env
+.env-local
 
 # Logs
 logs

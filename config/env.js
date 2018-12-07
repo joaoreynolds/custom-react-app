@@ -1,7 +1,7 @@
 const paths = require('./paths')
 require('dotenv').config({
   silent: true,
-  path: paths.dotenv
+  path: process.env.NODE_ENV === 'production' ? paths.buildDotEnv : paths.localDotEnv
 })
 
 // Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
