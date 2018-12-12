@@ -1,9 +1,9 @@
-import Enzyme from 'enzyme'
+import {configure} from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
 
 import localStorageMock from './localStorageMock'
 
-Enzyme.configure({ adapter: new EnzymeAdapter() })
+configure({ adapter: new EnzymeAdapter() })
 
 /**
  * Mock window.appHistory
