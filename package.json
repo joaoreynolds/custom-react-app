@@ -9,7 +9,7 @@
   "scripts": {
     "test": "node dev-scripts/test.js --env=jsdom --colors --detectOpenHandles",
     "test:ci": "cross-env CI=true npm run test",
-    "start": "webpack-dev-server --open --config config/webpack.config.js",
+    "start": "webpack-dev-server --progress --config config/webpack.config.js",
     "build": "node dev-scripts/build.js",
     "lint": "eslint --config=config/.eslintrc.js 'src/**/*.{js,mjs,jsx,ts,tsx}'"
   },

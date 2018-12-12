@@ -23,12 +23,10 @@ module.exports = {
     contentBase: paths.appPublic,
     historyApiFallback: true,
     // hot: true,
-    // Silence WebpackDevServer's own logs since they're generally not useful.
-    // It will still show compile warnings and errors with this setting.
     clientLogLevel: 'none',
     overlay: true,
     open: true,
-    quiet: true,
+    quiet: false,
     stats: 'minimal'
   },
   resolve: {
