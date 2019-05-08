@@ -22,7 +22,7 @@ module.exports = {
   output: {
     path: paths.appBuild,
     filename: 'static/[name].[contenthash].js',
-    publicPath: '',
+    publicPath: '/'
   },
   resolve: {
     modules: [

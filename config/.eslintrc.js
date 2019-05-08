@@ -36,6 +36,7 @@ module.exports = {
     "no-new": [0],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "no-unneeded-ternary": 0,
+    "object-curly-spacing": 0,
     "one-var": 0,
     "padded-blocks": 0,
     "prefer-promise-reject-errors": 0,
@@ -45,11 +46,13 @@ module.exports = {
     "react/jsx-boolean-value": 0,
     "react/jsx-no-bind": [2, {"allowArrowFunctions": true}],
     "react/jsx-space-before-closing": 0,
+    "react/jsx-tag-spacing": 0,
     "semi": [2, "never"],
     "space-before-blocks": [0],
     "space-before-function-paren": [0],
     "space-infix-ops": 0,
     "spaced-comment": 0,
-    "standard/object-curly-even-spacing": 0
+    "standard/object-curly-even-spacing": 0,
+    "template-curly-spacing": 0
   }
 };

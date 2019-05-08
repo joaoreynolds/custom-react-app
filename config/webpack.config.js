@@ -12,12 +12,13 @@ const env = getClientEnvironment('')
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
     paths.appIndexJs
   ],
   output: {
-    filename: 'static/js/[name].js'
+    filename: 'static/js/[name].js',
+    publicPath: '/'
   },
   devServer: {
     contentBase: paths.appPublic,

@@ -71,6 +71,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
+  "browserslist": "> 0.25%, not dead",
   "babel": {
     "presets": [
       "@babel/preset-react",
