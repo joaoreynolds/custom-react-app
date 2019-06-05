@@ -8,6 +8,7 @@ module.exports = {
   root: appDirectory,
   buildDotEnv: resolveApp('config/.env'),
   localDotEnv: resolveApp('config/.env-local'),
+  testDotEnv: resolveApp('config/.env-test'),
   appIndexJs: resolveApp('src/index.js'),
   appBuild: resolveApp('build'),
   appSrc: resolveApp('src'),

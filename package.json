@@ -78,7 +78,10 @@
       [
         "@babel/preset-env",
         {
-          "useBuiltIns": "entry"
+          "useBuiltIns": "entry",
+          "targets": {
+            "node": "current"
+          }
         }
       ]
     ],
@@ -95,8 +98,8 @@
       "src/**/*.{js,jsx}"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+      "<rootDir>/src/**/__tests__/**/*.[jt]s?(x)",
+      "<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"
     ],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
