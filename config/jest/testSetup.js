@@ -1,9 +1,6 @@
-import {configure} from 'enzyme'
-import EnzymeAdapter from 'enzyme-adapter-react-16'
-
+import 'jest-dom/extend-expect'
 import localStorageMock from './localStorageMock'
 
-configure({ adapter: new EnzymeAdapter() })
 
 /**
  * Mock window.appHistory
@@ -18,14 +15,6 @@ window.appHistory = {
  */
 window.globalFunctions = {}
 
-global.mockApiUrl = 'http://localhost:3000'
+global.mockApiUrl = process.env.REACT_APP_API_URL.replace(/\/$/, '')
 
 global.localStorage = localStorageMock
-
-/**
- * This func can be used to get promises inside a component to resolve
- * @type {Function}
- */
-global.flushPromises = () => {
-  return new Promise(resolve => setImmediate(resolve))
-}
