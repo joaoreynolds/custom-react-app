@@ -34,7 +34,7 @@ Env variables used in the app must begin with `REACT_APP_`.
 
 Tests are run automatically on the git pre-commit hook - so when you run `git commit`, tests (and linting) will run first. When developing tests, you can run `npm test` and your files will be watched.
 
-Our convention is: create test files in the same directory as the source file with the same name and `test.js` on the end. For example: `Button.js` would have a test `Button.test.js` in the same directory. We're using `jest` to run our tests (https://facebook.github.io/jest/) along with `enzyme` (http://airbnb.io/enzyme/) to access the component/dom within our tests. Tests are linted on the pre-commit hook using the same rules as the regular development process.
+Our convention is: create test files in the same directory as the source file with the same name and `test.js` on the end. For example: `Button.js` would have a test `Button.test.js` in the same directory. We're using `jest` to run our tests (https://facebook.github.io/jest/) along with `react-testing-library` (https://testing-library.com/docs/react-testing-library/intro) to access the component/dom within our tests. Tests are linted on the pre-commit hook using the same rules as the regular development process.
 
 ### Pre-Commit Hook
 
