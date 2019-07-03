@@ -16,4 +16,5 @@ module.exports = {
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   eslintConfig: resolveApp('config/.eslintrc.js'),
+  babelConfig: resolveApp('.babelrc.js'),
 }

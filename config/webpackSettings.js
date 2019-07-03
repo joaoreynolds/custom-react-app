@@ -43,7 +43,8 @@ const babelRule = {
       options: {
         cacheDirectory: true,
         cacheCompression: false,
-        // presets: [], <-- Presets and plugins should be added in package.json so that jest can see what they are
+        configFile: paths.babelConfig,
+        // presets: [], <-- Presets and plugins should be added in .babelrc.js so that jest can see what they are
         // plugins: []
       }
     }
@@ -76,12 +77,6 @@ const stylesRule = {
         plugins: () => [
           require('postcss-flexbugs-fixes'),
           autoprefixer({
-            browsers: [
-              '>1%',
-              'last 4 versions',
-              'Firefox ESR',
-              'not ie < 9', // React doesn't support IE8 anyway
-            ],
             flexbox: 'no-2009',
           }),
         ],
@@ -111,12 +106,6 @@ const productionCssRule = {
         plugins: () => [
           require('postcss-flexbugs-fixes'),
           autoprefixer({
-            browsers: [
-              '>1%',
-              'last 4 versions',
-              'Firefox ESR',
-              'not ie < 9', // React doesn't support IE8 anyway
-            ],
             flexbox: 'no-2009',
           }),
         ],
