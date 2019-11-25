@@ -27,7 +27,7 @@ module.exports = {
   resolve: {
     modules: [
       paths.appSrc,
-      paths.appNodeModules
+      'node_modules'
     ],
     extensions: ['.js', '.jsx', '.scss'],
   },

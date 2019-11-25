@@ -33,7 +33,7 @@ module.exports = {
   resolve: {
     modules: [
       paths.appSrc,
-      paths.appNodeModules
+      'node_modules' // paths.appNodeModules isn't compatible with react-router if you want to use NavLink active class for some weird reason
     ],
     extensions: ['.js', '.jsx', '.scss'],
   },

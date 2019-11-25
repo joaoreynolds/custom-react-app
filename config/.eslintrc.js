@@ -45,9 +45,12 @@ module.exports = {
     "react/no-unused-prop-types": 0,
     "react/prop-types": 0,
     "react/jsx-boolean-value": 0,
+    "react/jsx-closing-bracket-location": [2, "line-aligned"],
+    "react/jsx-closing-tag-location": 0, //as of 8/20/19 location options aren't enabled: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md
     "react/jsx-no-bind": [2, {"allowArrowFunctions": true}],
     "react/jsx-space-before-closing": 0,
     "react/jsx-tag-spacing": 0,
+    "react/jsx-wrap-multilines": 0,
     "semi": [2, "never"],
     "space-before-blocks": [0],
     "space-before-function-paren": [0],
