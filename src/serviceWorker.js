@@ -41,7 +41,7 @@ export function registerSW(){
           // This works around a bug in "force update on reload".
           if (preventDevToolsReloadLoop) return
           preventDevToolsReloadLoop = true
-          window.location.reload()
+          window.location.reload(true)
         })
 
         onNewServiceWorker(registration, function() {
