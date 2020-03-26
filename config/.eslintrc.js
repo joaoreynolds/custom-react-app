@@ -41,6 +41,7 @@ module.exports = {
     "one-var": 0,
     "padded-blocks": 0,
     "prefer-promise-reject-errors": 0,
+    "quotes": ["error", "single", {"allowTemplateLiterals": true}],
     "react/no-unknown-property": 0,
     "react/no-unused-prop-types": 0,
     "react/prop-types": 0,
