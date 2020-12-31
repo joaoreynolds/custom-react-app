@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "./dist/",
+    "noImplicitAny": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "jsx": "react",
+    "allowJs": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "importsNotUsedAsValues": "preserve",
+    "downlevelIteration": true
+  },
+  "include": [
+    "src"
+  ]
+}
+  

@@ -9,7 +9,7 @@ module.exports = {
   buildDotEnv: resolveApp('config/.env'),
   localDotEnv: resolveApp('config/.env-local'),
   testDotEnv: resolveApp('config/.env-test'),
-  appIndexJs: resolveApp('src/index.js'),
+  appIndexJs: resolveApp('src/index.tsx'),
   appBuild: resolveApp('build'),
   appSrc: resolveApp('src'),
   appNodeModules: resolveApp('node_modules'),

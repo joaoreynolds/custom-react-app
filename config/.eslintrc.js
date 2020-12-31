@@ -1,7 +1,9 @@
 module.exports = {
   "extends": ["standard", "standard-react"],
-  "parser": "babel-eslint",
+  "ignorePatterns": ["config/*", "dev-scripts/*"],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
+    "@typescript-eslint",
     "react"
   ],
   "parserOptions": {
@@ -17,26 +19,37 @@ module.exports = {
     "test": true,
     "it": true,
     "flushPromises": true,
-    "expect": true
+    "expect": true,
+    "NodeJS": true
   },
   "settings": {
     "react": {
-      "version": "16.0"
+      "version": "detect"
     }
   },
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "array-callback-return": 0,
     "block-spacing": 0,
     "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
     "comma-dangle": ["error", "only-multiline"],
     "indent": ["error", 2, { "MemberExpression": 0, "SwitchCase": 1 }],
     "jsx-quotes": ["error", "prefer-double"],
     "keyword-spacing": 0,
+    "multiline-ternary": 0,
     "no-mixed-operators": 0,
     "no-multiple-empty-lines": ["error", {"max": 3}],
     "no-multi-spaces": 0,
     "no-new": [0],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "no-unneeded-ternary": 0,
+    "no-unused-vars": [1],
+    "no-use-before-define": 0, // overridden by typescript-eslint
     "object-curly-spacing": 0,
     "one-var": 0,
     "padded-blocks": 0,

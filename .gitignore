@@ -4,6 +4,7 @@
 #*
 .sass-cache
 .tmp
+.eslintcache
 
 node_modules
 /build

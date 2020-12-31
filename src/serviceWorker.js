@@ -35,8 +35,8 @@ export function registerSW(){
         // When the user asks to refresh the UI, we'll execute the skipWaiting event
         // which in turn executes the controllerchange event - so in response
         // to that we can reload the window
-        var preventDevToolsReloadLoop
-        navigator.serviceWorker.addEventListener('controllerchange', function(event) {
+        let preventDevToolsReloadLoop
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
           // Ensure refresh is only called once.
           // This works around a bug in "force update on reload".
           if (preventDevToolsReloadLoop) return
@@ -101,7 +101,7 @@ function onNewServiceWorker(registration, callback) {
 function showRefreshUI(registration) {
 
   // This demo creates and injects a button.
-  var button = document.createElement('button')
+  const button = document.createElement('button')
   button.style.position = 'absolute'
   button.style.bottom = '24px'
   button.style.left = '24px'

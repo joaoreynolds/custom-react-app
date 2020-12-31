@@ -1,9 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const WorkboxPlugin = require('workbox-webpack-plugin')
+const {GenerateSW} = require('workbox-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const paths = require('./paths')
 const getClientEnvironment = require('./env')
@@ -29,22 +30,21 @@ module.exports = {
       paths.appSrc,
       'node_modules'
     ],
-    extensions: ['.js', '.jsx', '.scss'],
+    extensions: ['.js', '.jsx', '.scss', '.ts', '.tsx'],
   },
   module: {
     strictExportPresence: true,
     noParse: /node_modules\/ajv\/build\/ajv.bundle.js/,
     rules: [
-      webpackSettings.esLintRule,
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
         oneOf: [
-          webpackSettings.urlLoaderRule,
+          webpackSettings.imageAssetRule,
           webpackSettings.babelRule,
           webpackSettings.productionCssRule,
-          webpackSettings.fileLoaderRule,
+          webpackSettings.generalAssetRule,
         ]
       },
     ], // end rules
@@ -53,15 +53,31 @@ module.exports = {
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
-        vendor: {
+        defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all'
+          chunks: 'all',
+          reuseExistingChunk: true
         }
       }
     }
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        files: './src/**/*.{js,mjs,jsx,ts,tsx}', // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
+        options: {
+          configFile: paths.eslintConfig,
+          cache: true
+        }
+      },
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+      },
+    }),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
@@ -69,7 +85,6 @@ module.exports = {
       minify: false,
       myPublicUrl: env.stringified.PUBLIC_URL
     }),
-    new webpack.HashedModuleIdsPlugin(),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -91,26 +106,13 @@ module.exports = {
     // by default due to how Webpack interprets its code. This is a practical
     // solution that requires the user to opt into importing specific locales.
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
-    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify|\.\/locale/, /ajv|moment/),
+    new webpack.IgnorePlugin({ resourceRegExp: /regenerator|nodent|js\-beautify|\.\/locale/, contextRegExp: /ajv|moment/ }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
-    new ManifestPlugin({
-      fileName: 'asset-manifest.json',
-      publicPath: '/',
-    }),
-    new WorkboxPlugin.GenerateSW({
+    new WebpackManifestPlugin(),
+    new GenerateSW({
       importScripts: ['sw.js']
     })
-  ],
-
-  // Some libraries import Node modules but don't use them in the browser.
-  // Tell Webpack to provide empty mocks for them so importing them works.
-  node: {
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty',
-  },
+  ]
 }

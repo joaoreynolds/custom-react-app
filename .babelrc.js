@@ -3,6 +3,7 @@ module.exports = api => {
   return {
     "presets": [
       "@babel/preset-react",
+      "@babel/preset-typescript",
       [
         "@babel/preset-env",
         isTest ? { // babel needs to target node for jest tests instead of what's in the browserslist in package.json

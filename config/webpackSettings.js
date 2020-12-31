@@ -3,33 +3,22 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const paths = require('./paths')
 
-
-const esLintRule = {
-  test: /\.(js|mjs|jsx|ts|tsx)$/,
-  enforce: 'pre',
-  use: [
-    {
-      options: {
-        configFile: paths.eslintConfig
-      },
-      loader: require.resolve('eslint-loader'),
-    },
-  ],
-  include: [
-    paths.appSrc
-  ],
+// "imageAssetRule" will either create a file in the build or returns inline data
+// depending on the filesize (if it's larger than 8kb, a file path is returned)
+const imageAssetRule = {
+  test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+  type: 'asset'
 }
 
-// "url" loader works like "file" loader except that it embeds assets
-// smaller than specified limit in bytes as data URLs to avoid requests.
-// A missing `test` is equivalent to a match.
-const urlLoaderRule = {
-  test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-  loader: require.resolve('url-loader'),
-  options: {
-    limit: 10000,
-    name: 'static/media/[name].[hash:8].[ext]',
-  },
+// "generalAssetRule" will either create a file in the build or returns inline data
+// depending on the filesize (if it's larger than 8kb, a file path is returned)
+const generalAssetRule = {
+  // Exclude `js` files to keep "css" loader working as it injects
+  // its runtime that would otherwise be processed through "file" loader.
+  // Also exclude `html` and `json` extensions so they get processed
+  // by webpacks internal loaders.
+  exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+  type: 'asset'
 }
 
 const babelRule = {
@@ -71,15 +60,17 @@ const stylesRule = {
     {
       loader: require.resolve('postcss-loader'),
       options: {
-        // Necessary for external CSS imports to work
-        // https://github.com/facebookincubator/create-react-app/issues/2677
-        ident: 'postcss',
-        plugins: () => [
-          require('postcss-flexbugs-fixes'),
-          autoprefixer({
-            flexbox: 'no-2009',
-          }),
-        ],
+        postcssOptions: {
+          // Necessary for external CSS imports to work
+          // https://github.com/facebookincubator/create-react-app/issues/2677
+          ident: 'postcss',
+          plugins: [
+            require('postcss-flexbugs-fixes'),
+            autoprefixer({
+              flexbox: 'no-2009',
+            }),
+          ],
+        }
       },
     },
   ],
@@ -100,42 +91,26 @@ const productionCssRule = {
     {
       loader: require.resolve('postcss-loader'),
       options: {
-        // Necessary for external CSS imports to work
-        // https://github.com/facebookincubator/create-react-app/issues/2677
-        ident: 'postcss',
-        plugins: () => [
-          require('postcss-flexbugs-fixes'),
-          autoprefixer({
-            flexbox: 'no-2009',
-          }),
-        ],
+        postcssOptions: {
+          // Necessary for external CSS imports to work
+          // https://github.com/facebookincubator/create-react-app/issues/2677
+          ident: 'postcss',
+          plugins: [
+            require('postcss-flexbugs-fixes'),
+            autoprefixer({
+              flexbox: 'no-2009',
+            }),
+          ],
+        }
       },
     },
   ]
 }
 
-// "file" loader makes sure those assets get served by WebpackDevServer.
-// When you `import` an asset, you get its (virtual) filename.
-// In production, they would get copied to the `build` folder.
-// This loader doesn't use a "test" so it will catch all modules
-// that fall through the other loaders.
-const fileLoaderRule = {
-  // Exclude `js` files to keep "css" loader working as it injects
-  // its runtime that would otherwise be processed through "file" loader.
-  // Also exclude `html` and `json` extensions so they get processed
-  // by webpacks internal loaders.
-  exclude: [/\.(js|mjs|jsx|ts|tsx|ttf|eot|svg|woff(2))$/, /\.html$/, /\.json$/],
-  loader: require.resolve('file-loader'),
-  options: {
-    name: 'static/media/[name].[hash:8].[ext]',
-  },
-}
-
 module.exports = {
-  esLintRule,
-  urlLoaderRule,
+  imageAssetRule,
+  generalAssetRule,
   babelRule,
   stylesRule,
-  productionCssRule,
-  fileLoaderRule
+  productionCssRule
 }
