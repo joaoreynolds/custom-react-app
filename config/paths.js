@@ -17,4 +17,5 @@ module.exports = {
   appHtml: resolveApp('public/index.html'),
   eslintConfig: resolveApp('config/.eslintrc.js'),
   babelConfig: resolveApp('.babelrc.js'),
+  serviceWorkerSrc: resolveApp('src/service-worker.ts')
 }

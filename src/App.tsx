@@ -1,6 +1,7 @@
 import React, {FC} from 'react'
 
 import './app.css'
+import photo from './photo.png'
 
 const App: FC = () => {
 
@@ -13,7 +14,9 @@ const App: FC = () => {
         The sky is the limit. - But the service worker doesn't work!
       </div>
       <div>
-        Go ahead and build anything from here!
+        <span>Go ahead and build anything from here!</span>
+        <br />
+        <img src={photo} alt="Test" />
       </div>
     </div>
   )

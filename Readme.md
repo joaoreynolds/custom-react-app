@@ -39,3 +39,7 @@ Our convention is: create test files in the same directory as the source file wi
 ### Pre-Commit Hook
 
 This app has a pre-commit hook which was installed automatically with the npm module `pre-commit`. You can configure what scripts are executed in the `pre-commit` property in `package.json`. Out of the box this will lint and run tests.
+
+# Version Notes
+
+`html-webpack-plugin` is set currently to `5.0.0-beta.4` because of an issue with webpack 5 where the index.html file was not emitted to the asset-manifest under v4. Should be able to upgrade to v5 release as soon as it's out of beta.

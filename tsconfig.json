@@ -2,6 +2,11 @@
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "./dist/",
+    "lib": [
+      "dom",
+      "webworker",
+      "esnext"
+    ],
     "noImplicitAny": false,
     "module": "es2020",
     "moduleResolution": "node",

@@ -1,10 +1,11 @@
 module.exports = {
-  "extends": ["standard", "standard-react"],
+  "extends": ["standard", "standard-react", "plugin:jsx-a11y/recommended", "plugin:@typescript-eslint/recommended"],
   "ignorePatterns": ["config/*", "dev-scripts/*"],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "react"
+    "react",
+    "jsx-a11y",
   ],
   "parserOptions": {
     "ecmaFeatures": {

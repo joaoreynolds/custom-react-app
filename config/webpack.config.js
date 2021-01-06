@@ -4,6 +4,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const WebpackNotifierPlugin = require('webpack-notifier')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+// const {InjectManifest} = require('workbox-webpack-plugin')
 
 const paths = require('./paths')
 const getClientEnvironment = require('./env')
@@ -77,7 +78,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
-      myPublicUrl: env.stringified.PUBLIC_URL
+      publicPath: '/'
     }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
@@ -103,10 +104,32 @@ module.exports = {
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
-    // new ManifestPlugin({
-    //   fileName: 'asset-manifest.json',
-    //   publicPath: '/',
+    new WebpackManifestPlugin({
+      fileName: 'asset-manifest.json',
+      publicPath: '/',
+      generate: (seed, files, entrypoints) => {
+        const manifestFiles = files.reduce((manifest, file) => {
+          manifest[file.name] = file.path;
+          return manifest;
+        }, seed)
+        const entrypointFiles = entrypoints.main.filter(
+          fileName => !fileName.endsWith('.map')
+        )
+        return {
+          files: manifestFiles,
+          entrypoints: entrypointFiles,
+        }
+      }
+    }),
+    // uncomment InjectManifest to debug service worker in local dev environment
+    // new InjectManifest({
+    //   swSrc: paths.serviceWorkerSrc,
+    //   dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
+    //   // exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],
+    //   // Bump up the default maximum size (2mb) that's precached,
+    //   // to make lazy-loading failure scenarios less likely.
+    //   // See https://github.com/cra-template/pwa/issues/13#issuecomment-722667270
+    //   maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
     // })
-    new WebpackManifestPlugin()
   ]
 }

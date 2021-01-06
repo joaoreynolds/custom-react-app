@@ -2,6 +2,7 @@
   "eslint.options": {
     "configFile": "config/.eslintrc.js"
   },
+  "eslint.workingDirectories": ["./src/**/*.{js,mjs,jsx,ts,tsx}"],
   "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "javascript.format.insertSpaceAfterKeywordsInControlFlowStatements": false,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,

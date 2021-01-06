@@ -18,7 +18,7 @@ const generalAssetRule = {
   // Also exclude `html` and `json` extensions so they get processed
   // by webpacks internal loaders.
   exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-  type: 'asset'
+  type: 'asset/resource'
 }
 
 const babelRule = {
